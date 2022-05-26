@@ -27,6 +27,10 @@ class MovieInfoServiceApplicationTests {
 		MovieInfo movieInfo = restTemplate.getForObject("http://localhost:" + port + "/movies/1",
 				MovieInfo.class);
 
-		assertThat(movieInfo).isEqualTo(new MovieInfo(1, "Jaws"));
+		MovieInfo expectedMovieInfo = new MovieInfo(
+				"Jaws",
+				"A man eating shark terrorises seaside resort.");
+
+		assertThat(movieInfo).isEqualTo(expectedMovieInfo);
 	}
 }
