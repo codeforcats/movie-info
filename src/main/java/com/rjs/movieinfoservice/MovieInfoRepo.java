@@ -1,6 +1,5 @@
 package com.rjs.movieinfoservice;
 
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -12,7 +11,7 @@ public class MovieInfoRepo {
         if (movieInfoMap.containsKey(movieId))
             return movieInfoMap.get(movieId);
         else
-            throw new ReourceNotFoundException();
+            throw new ResourceNotFoundException();
     }
 
     private final java.util.Map<String, MovieInfo> movieInfoMap = Map.of(

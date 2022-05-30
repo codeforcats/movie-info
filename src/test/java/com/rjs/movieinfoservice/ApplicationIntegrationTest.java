@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest (webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ApplicationTest {
+class ApplicationIntegrationTest {
 
 	@LocalServerPort
 	private int port;
@@ -18,7 +20,7 @@ class ApplicationTest {
 	private TestRestTemplate restTemplate;
 
 	@Test
-	void shouldReturnHardCodedMovieInfo(){
+	void movieFound(){
 		MovieInfo movieInfo = restTemplate.getForObject("http://localhost:" + port + "/movies/Jaws",
 				MovieInfo.class);
 
@@ -27,5 +29,11 @@ class ApplicationTest {
 				"A man eating shark terrorises seaside resort.");
 
 		assertThat(movieInfo).isEqualTo(expectedMovieInfo);
+	}
+
+	@Test
+	void movieNotFound(){
+		ResponseEntity<MovieInfo> responseEntity = restTemplate.getForEntity("http://localhost:" + port + "/movies/foo", MovieInfo.class);
+		assertThat(HttpStatus.NOT_FOUND).isEqualTo( responseEntity.getStatusCode());
 	}
 }

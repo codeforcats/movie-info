@@ -36,7 +36,7 @@ class MovieControllerTest {
     void movieNotFound() throws Exception {
 
         when(mockMovieInfoRepo.getMovieInfo("Bad News"))
-                .thenThrow(new ReourceNotFoundException());
+                .thenThrow(new ResourceNotFoundException());
 
         mockMvc.perform(get("/movies/Bad News"))
                 .andExpect(status().isNotFound());
