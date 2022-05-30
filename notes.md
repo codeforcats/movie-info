@@ -3,14 +3,17 @@
 ## make the executable jar file
 * ./mnvw package
 
+## run jar file from the command line
+java -jar target/movie-info-service-0.0.1-SNAPSHOT.jar
+
 ## build a docker image which runs the executable jar file
 * docker build -t movie-info-service-image .
 
-## run (detached)the image in a docker container, with ports mapped.
+## run (detached) the image in a docker container, with ports mapped.
 * docker run -d -p 8082:8082 movie-info-service-image 
 
-## test the image (for movie found)
+## test the application (for movie found)
 * curl http://localhost:8082/movies/Jaws
 
-## test the image (for movie not found)
+## test the application (for movie not found)
 * curl http://localhost:8082/movies/foo
