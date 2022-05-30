@@ -1,6 +1,5 @@
 package com.rjs.movieinfoservice;
 
-import com.rjs.movieinfoservice.model.MovieInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +9,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest (webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class MovieInfoServiceApplicationTests {
+class ApplicationTest {
 
 	@LocalServerPort
 	private int port;
@@ -19,12 +18,8 @@ class MovieInfoServiceApplicationTests {
 	private TestRestTemplate restTemplate;
 
 	@Test
-	void contextLoads() {
-	}
-
-	@Test
 	void shouldReturnHardCodedMovieInfo(){
-		MovieInfo movieInfo = restTemplate.getForObject("http://localhost:" + port + "/movies/1",
+		MovieInfo movieInfo = restTemplate.getForObject("http://localhost:" + port + "/movies/Jaws",
 				MovieInfo.class);
 
 		MovieInfo expectedMovieInfo = new MovieInfo(
