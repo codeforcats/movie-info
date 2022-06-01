@@ -7,6 +7,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -23,10 +25,10 @@ class MovieControllerTest {
     @Test
     void movieFound() throws Exception {
 
-        when(mockMovieInfoRepo.getMovieInfo("Good News"))
-                .thenReturn(new MovieInfo("Good News", "A good news story."));
+        when(mockMovieInfoRepo.findMovieInfoByMovieId("Good News"))
+                .thenReturn(Optional.of(new MovieInfo("Good News", "A good news story.")));
 
-        mockMvc.perform(get("/movies/Good News"))
+        mockMvc.perform(get("/movies/{movieId}", "Good News"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content()
                         .string("{\"movieId\":\"Good News\",\"description\":\"A good news story.\"}"));;
@@ -35,10 +37,10 @@ class MovieControllerTest {
     @Test
     void movieNotFound() throws Exception {
 
-        when(mockMovieInfoRepo.getMovieInfo("Bad News"))
-                .thenThrow(new ResourceNotFoundException());
+        when(mockMovieInfoRepo.findMovieInfoByMovieId("Bad News"))
+                .thenReturn(Optional.empty());
 
-        mockMvc.perform(get("/movies/Bad News"))
+        mockMvc.perform(get("/movies/{movieId}", "Bad News"))
                 .andExpect(status().isNotFound());
     }
 

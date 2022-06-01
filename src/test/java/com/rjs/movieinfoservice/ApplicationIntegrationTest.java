@@ -21,8 +21,8 @@ class ApplicationIntegrationTest {
 
 	@Test
 	void movieFound(){
-		MovieInfo movieInfo = restTemplate.getForObject("http://localhost:" + port + "/movies/Jaws",
-				MovieInfo.class);
+		MovieInfo movieInfo = restTemplate.getForObject("http://localhost:" + port + "/movies/{movieId}",
+				MovieInfo.class, "Jaws");
 
 		MovieInfo expectedMovieInfo = new MovieInfo(
 				"Jaws",
@@ -33,7 +33,9 @@ class ApplicationIntegrationTest {
 
 	@Test
 	void movieNotFound(){
-		ResponseEntity<MovieInfo> responseEntity = restTemplate.getForEntity("http://localhost:" + port + "/movies/foo", MovieInfo.class);
+		ResponseEntity<MovieInfo> responseEntity =
+				restTemplate.getForEntity("http://localhost:" + port + "/movies/{movieId}",
+						MovieInfo.class, "foo");
 		assertThat(HttpStatus.NOT_FOUND).isEqualTo( responseEntity.getStatusCode());
 	}
 }
