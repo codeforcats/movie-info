@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movies")
 @AllArgsConstructor
-
 public class MovieController {
-
     @Autowired
     private MovieInfoRepo movieInfoRepo;
 
