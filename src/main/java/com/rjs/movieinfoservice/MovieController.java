@@ -14,7 +14,9 @@ public class MovieController {
     private MovieInfoRepo movieInfoRepo;
 
     @RequestMapping("/{movieId}")
-    public MovieInfo getMovieInfo(@PathVariable String movieId){
-        return movieInfoRepo.findMovieInfoByMovieId(movieId).orElseThrow(ResourceNotFoundException::new);
+    public MovieInfo getMovieInfo(final @PathVariable String movieId) {
+        return movieInfoRepo
+                .findMovieInfoByMovieId(movieId)
+                .orElseThrow(ResourceNotFoundException::new);
     }
 }

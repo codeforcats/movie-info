@@ -8,11 +8,11 @@ import java.util.Optional;
 @Component
 public class MovieInfoRepo {
 
-    public Optional<MovieInfo> findMovieInfoByMovieId(String movieId){
+    public Optional<MovieInfo> findMovieInfoByMovieId(final String movieId) {
         return Optional.ofNullable(movieInfoMap.get(movieId));
     }
 
-    private final java.util.Map<String, MovieInfo> movieInfoMap = Map.of(
+    private  java.util.Map<String, MovieInfo> movieInfoMap = Map.of(
         "Jaws",
         new MovieInfo("Jaws", "A man eating shark terrorises seaside resort.")
     );
