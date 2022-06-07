@@ -13,8 +13,14 @@ public class MovieInfoRepo {
     }
 
     private  java.util.Map<String, MovieInfo> movieInfoMap = Map.of(
-        "Jaws",
-        new MovieInfo("Jaws", "A man eating shark terrorises seaside resort.")
+            "Jaws",
+            new MovieInfo("Jaws", "A man eating shark terrorises seaside resort."),
+
+            "Terminator",
+            new MovieInfo("Terminator", "He will be back."),
+
+            "StarWars",
+            new MovieInfo("StarWars", "In a Galaxy, far, far away ....")
     );
 
 }
