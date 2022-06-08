@@ -2,6 +2,7 @@ package com.rjs.movieinfoservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -16,12 +17,15 @@ class ApplicationIT {
 	@LocalServerPort
 	private int port;
 
+	@Value("${server.host}")
+	private String host;
+
 	@Autowired
 	private TestRestTemplate restTemplate;
 
 	@Test
 	void movieFound(){
-		MovieInfo movieInfo = restTemplate.getForObject("http://localhost:" + port + "/movies/{movieId}",
+		MovieInfo movieInfo = restTemplate.getForObject("http://" + host + ":" + port + "/movies/{movieId}",
 				MovieInfo.class, "Jaws");
 
 		MovieInfo expectedMovieInfo = new MovieInfo(
@@ -34,7 +38,7 @@ class ApplicationIT {
 	@Test
 	void movieNotFound(){
 		ResponseEntity<MovieInfo> responseEntity =
-				restTemplate.getForEntity("http://localhost:" + port + "/movies/{movieId}",
+				restTemplate.getForEntity("http://" + host + ":" + port + "/movies/{movieId}",
 						MovieInfo.class, "foo");
 		assertThat(HttpStatus.NOT_FOUND).isEqualTo( responseEntity.getStatusCode());
 	}
