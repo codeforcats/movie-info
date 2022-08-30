@@ -1,4 +1,4 @@
-package com.rjs.movieinfoservice;
+package com.rjs.movieinfo;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

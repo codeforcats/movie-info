@@ -3,4 +3,4 @@
  *
  * @author richard
  */
-package com.rjs.movieinfoservice;
+package com.rjs.movieinfo;

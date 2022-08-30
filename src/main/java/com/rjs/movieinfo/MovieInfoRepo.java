@@ -1,4 +1,4 @@
-package com.rjs.movieinfoservice;
+package com.rjs.movieinfo;
 
 import org.springframework.stereotype.Component;
 

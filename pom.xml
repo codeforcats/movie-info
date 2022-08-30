@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rjs</groupId>
-	<artifactId>movie-info-service</artifactId>
+	<artifactId>movie-info</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>movie-info-service</name>
+	<name>movie-info</name>
 	<description>provides movie details for a given movie id</description>
 	<properties>
 		<java.version>17</java.version>

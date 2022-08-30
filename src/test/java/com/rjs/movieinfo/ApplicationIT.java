@@ -1,4 +1,4 @@
-package com.rjs.movieinfoservice;
+package com.rjs.movieinfo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
